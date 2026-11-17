@@ -18,7 +18,6 @@ def choose_difficulty():
             print("Invalid choice. Please enter 1, 2, or 3.")
 
 
-
 def play_round():
     lowest_num = 1
     highest_num = 100
@@ -44,7 +43,7 @@ def play_round():
 
         if guess == secret_number:
             print(f"\nCorrect! You got it in {attempts_used} attempts.")
-            return
+            return attempts_used, level
         else:
             wrong_guesses += 1
             if guess < secret_number:
@@ -52,7 +51,7 @@ def play_round():
             else:
                 print("Too High!")
 
-                    # Hint after 3 wrong guesses
+            # Hint after 3 wrong guesses
             if wrong_guesses == 3:
                 if secret_number % 2 == 0:
                     print("Hint: The number is even.")
@@ -61,12 +60,13 @@ def play_round():
                 if secret_number % 5 == 0:
                     print("Hint: The number is divisible by 5.")
 
-
         remaining = max_attempts - attempts_used
         if remaining > 0:
             print(f"Attempts left: {remaining}\n")
         else:
             print(f"\nOut of attempts! The number was {secret_number}.")
+
+    return None, level
 
 
 def main():
