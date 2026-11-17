@@ -107,6 +107,12 @@ def show_leaderboard():
             print("No scores yet.")
             return
 
+                # Ask if user wants to filter by difficulty
+        filter_choice = input("\nFilter by difficulty? (Easy/Medium/Hard or press Enter for all): ").strip().capitalize()
+        if filter_choice in ["Easy", "Medium", "Hard"]:
+            scores = [s for s in scores if s[1] == filter_choice]
+
+
         scores.sort(key=lambda x: x[2])
         print("\n--- Top Scores ---")
         for i, (name, level, attempts) in enumerate(scores[:5], 1):
