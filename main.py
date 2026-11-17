@@ -82,8 +82,13 @@ def save_score(attempts, level):
 def main():
     print("=== Number Guessing Game ===")
     print("Welcome! Let's play.")
-    play_round()
 
+    result, level = play_round()
+
+    if result is not None:
+        save = input("\nSave this score? (y/n): ").strip().lower()
+        if save == "y":
+            save_score(result, level)
 
 if __name__ == "__main__":
     main()
