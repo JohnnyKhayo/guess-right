@@ -25,6 +25,7 @@ def play_round():
     secret_number = random.randint(lowest_num, highest_num)
     max_attempts, level = choose_difficulty()
     attempts_used = 0
+    wrong_guesses = 0
 
     print(f"\n{level} mode. I'm thinking of a number between {lowest_num} and {highest_num}.")
     print(f"You have {max_attempts} attempts.\n")
@@ -44,10 +45,22 @@ def play_round():
         if guess == secret_number:
             print(f"\nCorrect! You got it in {attempts_used} attempts.")
             return
-        elif guess < secret_number:
-            print("Too Low!")
         else:
-            print("Too High!")
+            wrong_guesses += 1
+            if guess < secret_number:
+                print("Too Low!")
+            else:
+                print("Too High!")
+
+                    # Hint after 3 wrong guesses
+            if wrong_guesses == 3:
+                if secret_number % 2 == 0:
+                    print("Hint: The number is even.")
+                else:
+                    print("Hint: The number is odd.")
+                if secret_number % 5 == 0:
+                    print("Hint: The number is divisible by 5.")
+
 
         remaining = max_attempts - attempts_used
         if remaining > 0:
