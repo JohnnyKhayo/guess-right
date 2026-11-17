@@ -24,9 +24,36 @@ def play_round():
     highest_num = 100
     secret_number = random.randint(lowest_num, highest_num)
     max_attempts, level = choose_difficulty()
+    attempts_used = 0
 
     print(f"\n{level} mode. I'm thinking of a number between {lowest_num} and {highest_num}.")
-    print(f"You have {max_attempts} attempts.")
+    print(f"You have {max_attempts} attempts.\n")
+
+    while attempts_used < max_attempts:
+        try:
+            guess = int(input(f"Attempt {attempts_used + 1}/{max_attempts} - Your guess: "))
+            if guess < lowest_num or guess > highest_num:
+                print(f"Please enter a number between {lowest_num} and {highest_num}.\n")
+                continue
+        except ValueError:
+            print("Please enter a valid number.\n")
+            continue
+
+        attempts_used += 1
+
+        if guess == secret_number:
+            print(f"\nCorrect! You got it in {attempts_used} attempts.")
+            return
+        elif guess < secret_number:
+            print("Too Low!")
+        else:
+            print("Too High!")
+
+        remaining = max_attempts - attempts_used
+        if remaining > 0:
+            print(f"Attempts left: {remaining}\n")
+        else:
+            print(f"\nOut of attempts! The number was {secret_number}.")
 
 
 def main():
