@@ -68,6 +68,16 @@ def play_round():
 
     return None, level
 
+def save_score(attempts, level):
+    name = input("Enter your name: ").strip()
+    if not name:
+        name = "Anonymous"
+    name = name.replace(",", "")
+
+    with open("high_scores.txt", "a", encoding="utf-8") as file:
+        file.write(f"{name},{level},{attempts}\n")
+    print("Score saved!")
+
 
 def main():
     print("=== Number Guessing Game ===")
