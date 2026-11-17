@@ -83,16 +83,22 @@ def main():
     print("=== Number Guessing Game ===")
     print("Welcome! Let's play.")
 
-    result, level = play_round()
-
-    if result is not None:
-        save = input("\nSave this score? (y/n): ").strip().lower()
-        if save == "y":
+    while True:
+        result, level = play_round()
+        
+        if result is not None:
+           save = input("\nSave this score? (y/n): ").strip().lower()
+           if save == "y":
             save_score(result, level)
 
-    view = input("\nShow leaderboard? (y/n): ").strip().lower()
-    if view == "y":
-        show_leaderboard()
+        view = input("\nShow leaderboard? (y/n): ").strip().lower()
+        if view == "y":
+            show_leaderboard()
+
+        again = input("\nPlay again? (y/n): ").strip().lower()
+        if again != "y":
+            print("Thanks for playing!")
+            break
    
 
 def show_leaderboard():
