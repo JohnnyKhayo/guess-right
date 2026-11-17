@@ -90,6 +90,11 @@ def main():
         if save == "y":
             save_score(result, level)
 
+    view = input("\nShow leaderboard? (y/n): ").strip().lower()
+    if view == "y":
+        show_leaderboard()
+   
+
 def show_leaderboard():
     try:
         with open("high_scores.txt", "r", encoding="utf-8") as file:
