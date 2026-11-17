@@ -19,11 +19,20 @@ def choose_difficulty():
 
 
 
+def play_round():
+    lowest_num = 1
+    highest_num = 100
+    secret_number = random.randint(lowest_num, highest_num)
+    max_attempts, level = choose_difficulty()
+
+    print(f"\n{level} mode. I'm thinking of a number between {lowest_num} and {highest_num}.")
+    print(f"You have {max_attempts} attempts.")
+
+
 def main():
     print("=== Number Guessing Game ===")
     print("Welcome! Let's play.")
-    max_attempts, level = choose_difficulty()
-    print(f"You selected {level} mode with {max_attempts} attempts.")
+    play_round()
 
 
 if __name__ == "__main__":
