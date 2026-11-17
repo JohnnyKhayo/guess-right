@@ -90,5 +90,30 @@ def main():
         if save == "y":
             save_score(result, level)
 
+def show_leaderboard():
+    try:
+        with open("high_scores.txt", "r", encoding="utf-8") as file:
+            scores = []
+            for line in file:
+                parts = line.strip().split(",")
+                if len(parts) == 3:
+                    name, level, attempts = parts
+                    try:
+                        scores.append((name, level, int(attempts)))
+                    except ValueError:
+                        continue
+
+        if not scores:
+            print("No scores yet.")
+            return
+
+        scores.sort(key=lambda x: x[2])
+        print("\n--- Top Scores ---")
+        for i, (name, level, attempts) in enumerate(scores[:5], 1):
+            print(f"{i}. {name} | {level} | {attempts} attempts")
+
+    except FileNotFoundError:
+        print("No scores yet.")
+
 if __name__ == "__main__":
     main()
